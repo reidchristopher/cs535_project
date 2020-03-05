@@ -2,7 +2,7 @@ import os
 import csv
 import pickle
 
-os.chdir('C:\\Users\\reidc\\OneDrive\\Documents\\current_classes\\cs535\\project\\Data')
+os.chdir(os.path.dirname(os.path.abspath(__file__)) + '/Data')
 base_dir = os.getcwd()
 
 file_name_delim = "_"
@@ -16,7 +16,7 @@ for subdir in next(os.walk(os.getcwd()))[1]:
     for str in str_parameters:
         parameters.append(float(str))
 
-    print(parameters)
+    # print(parameters)
 
     disp_file_name = file_name_delim.join(["Disp"] + str_parameters)
     react_file_name = file_name_delim.join(["React"] + str_parameters)

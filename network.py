@@ -65,9 +65,12 @@ def load_data(file_list):
 
 
 def main():
+    import os
     from os import listdir, getcwd, chdir
     from os.path import isfile, join
-    chdir('C:\\Users\\reidc\\OneDrive\\Documents\\current_classes\\cs535\\project\\Data')
+
+    script_location = os.path.dirname(os.path.abspath(__file__))
+    chdir(script_location + '/Data')
 
     data_files = [f for f in listdir(getcwd()) if isfile(join(getcwd(), f))]
 
