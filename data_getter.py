@@ -1,5 +1,6 @@
 import os
 import os.path as path
+import shutil
 import csv
 import pickle
 import numpy as np
@@ -84,17 +85,21 @@ if __name__ == "__main__":
 
             data[num_water_particles + num_beam_particles:, -3:] = [0, 0, 1]
 
-            particle_data_list[i] = data.copy()
-
+            particle_data_list[i] = data
 
         sorted_indices = np.argsort(particle_data_times)
 
         particle_data_times = np.array(sorted(particle_data_times))
 
-        particle_data = np.array(particle_data_list)[sorted_indices]
+        particle_data = np.array([particle_data_list[i] for i in sorted_indices])
 
         data_file_name = file_name_delim.join(["data"] + str_parameters) + ".npz"
 
         np.savez(data_file_name, inputs=inputs, outputs=outputs, points=particle_data, times=particle_data_times)
 
         del particle_data_times, particle_data, inputs, outputs
+
+        print("Removing %s" % (base_dir + "/" + subdir))
+        input("Press enter to continue")
+
+        shutil.rmtree(base_dir + "/" + subdir)
