@@ -45,18 +45,13 @@ def load_data(file_list):
 
     inputs = []
     outputs = []
-    maxes = []
 
     for file in file_list:
 
-        with open(file, 'rb') as f:
-            data = pickle.load(f)
+        data = np.load(file)
 
-        inputs += data[0]
-        outputs += data[1]
-        # maxes += [np.max(np.array(data[1])[0], axis=0)]
-
-    # print(maxes)
+        inputs += data['inputs']
+        outputs += data['outputs']
 
     inputs = np.array(inputs)
     outputs = np.array(outputs)

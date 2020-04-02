@@ -5,6 +5,10 @@ import csv
 import pickle
 import numpy as np
 
+# assumes there is a Data directory in the same directory as this file
+# within that data directory expects Obst_#_#_#_# directories with Displ_React and Inputs directories
+
+# can use a substantial amount of RAM, potentially causing failure if there isn't enough
 if __name__ == "__main__":
 
     os.chdir(os.path.dirname(os.path.abspath(__file__)) + '/Data')
@@ -47,7 +51,7 @@ if __name__ == "__main__":
             for i, row in enumerate(reader):
 
                 if row[0] != inputs[i][-1]:
-                    raise Exception("Shit's not right")
+                    raise Exception("Something's wrong with the reading")
 
                 outputs[i] += row[1:]
 
